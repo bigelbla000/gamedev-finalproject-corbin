@@ -9,9 +9,10 @@ public class EnemyDamage : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player");
+        if(collision.transform.tag == "Player");
         {
             playerHealth.TakeDamage(damage);
+            Debug.Log(collision.gameObject.name);
         }
     }
 
