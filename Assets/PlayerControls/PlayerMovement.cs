@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask WaterMask;
     public LayerMask groundMask;
     //public LayerMask speedblockMask; //Disabled.
-    float xInput;
+    public float xInput;
     float yInput;
     public bool waterdetect; //public for the sake of debugging.
     public bool speedPanel; //public for the sake of debugging.
@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     void MoveWithInput() {
         if(Mathf.Abs(xInput) > 0 && ! speedPanel && ! waterdetect && SpeedPanelMomentumDEBUG == false) {
             body.linearVelocity = new Vector2(xInput * groundSpeed, body.linearVelocity.y);
+            //body.AddForce(new Vector2((xInput * Time.deltaTime) * groundSpeed, 0));
 
             float direction = Mathf.Sign(xInput);
             transform.localScale = new Vector3(direction, 1, 1);
