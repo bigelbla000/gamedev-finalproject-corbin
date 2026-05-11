@@ -8,7 +8,7 @@ public class EnemyMovementAdvanced : MonoBehaviour
     public float moveSpeed;
     public float chaseSpeed; //This exists because of the movespeed required to be capable of chasing the people, being WAY too fast for patroling!
     public float verticalChaseSpeed; //only used during isChasing.
-    public int patrolDestination;
+    private int patrolDestination;
     public Transform playerTransform;
     public bool isChasing;
     public float chaseDistance;
@@ -24,7 +24,7 @@ public class EnemyMovementAdvanced : MonoBehaviour
     [Range (0.5f, 30f)]
     public float EvasionTime;
     public bool EvasionAbility; //Determines if 'isChasing' is permenantly enabled or not when isChasing gets triggered, setting to true will enable the ability to evade from enemy.
-    public bool evading;
+    private bool evading;
     private bool grounded; //public for the sake of debugging.
     private bool walled; //public for the sake of debugging.
     public BoxCollider2D groundCheck;
@@ -34,7 +34,10 @@ public class EnemyMovementAdvanced : MonoBehaviour
     public bool patrolMode2; //Random.
     [Range(0.1f, 40f)]
     public float speedCapLimit;
-    public bool speedCapHit;
+    private bool speedCapHit;
+    public bool debugDirection;
+    public float debugDISTANCE;
+    [SerializeField] private Animator animator;
 
     void Start() {
         isChasing = false;
@@ -59,11 +62,13 @@ void FixedUpdate() {
             if((transform.position.x + 0.2) > playerTransform.position.x && !speedCapHit)
             {
                 transform.localScale = new Vector3(1, 1, 1);
+                debugDirection = false;
                 body.AddForce(new Vector2((-1 * Time.deltaTime) * chaseSpeed, 0)); //I want to figure out a way to detect velocity so I can boost it or cap the speed.
             }
             if((transform.position.x - 0.2) < playerTransform.position.x && !speedCapHit)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                //transform.localScale = new Vector3(-1, 1, 1);
+                debugDirection = true;
                 body.AddForce(new Vector2((Time.deltaTime) * chaseSpeed, 0));
             }
             // if (transform.position.y > playerTransform.position.y)
@@ -83,7 +88,9 @@ void FixedUpdate() {
                 evading = true;
                 isChasing = false;
             }
-            
+            animator.SetBool("isRun", true);
+
+
         }
         else if(evading)
         {
@@ -119,11 +126,20 @@ void FixedUpdate() {
             {
                 chosenTime -= Time.deltaTime;
                 waitingState = (chosenTime > 0.1f);
+                animator.SetBool("isRun", false);
                 //Debug.Log(chosenTime);   
 
             }
+            else
+            {
+                animator.SetBool("isRun", true);
+            }
+
         }
     CheckGroundAndWall();
+    SpeedCapCheck();
+    //DEBUG SECTION -- DISABLE IF "EnemyDebugText.cs" ISNT BEING USED
+    debugDISTANCE = (Vector2.Distance(transform.position, playerTransform.position) - chaseDistance);
     
 }
 
@@ -178,10 +194,12 @@ void PatrolDirection() { //Cosmetic related. Flips the model around when facing 
     if(transform.position.x > patrolPoints[patrolDestination].position.x)
     {
         transform.localScale = new Vector3(1, 1, 1);
+        //debugDirection = false;
     }
     if(transform.position.x < patrolPoints[patrolDestination].position.x)
     {
         transform.localScale = new Vector3(-1, 1, 1);
+        //debugDirection = true;
     }
 }
 
@@ -208,5 +226,29 @@ void DebugStartupCheck() {
         {
             speedCapHit = false;
         }
+    }
+
+
+
+
+//DEBUG SEGMENT -- DISABLE IF "EnemyDebugText.cs" ISNT BEING USED.
+public float GetchosenTime() {
+    return chosenTime;
+}
+public float GetPatrolDestination()
+    {
+        return patrolDestination;
+    }
+public bool GetWaitingState()
+    {
+        return waitingState;
+    }
+public bool GetEvading()
+    {
+        return evading;
+    }
+public bool GetspeedCapHit()
+    {
+        return speedCapHit;
     }
 }
