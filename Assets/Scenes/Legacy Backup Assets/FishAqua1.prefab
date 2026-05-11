@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5158904939131328479}
   - component: {fileID: 6047109458254669081}
   m_Layer: 0
-  m_Name: WaterCheck
+  m_Name: WaterCheck1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -185,11 +185,85 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2189268020491164033, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
       insertIndex: 2
       addedObject: {fileID: 5158904939131328479}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7841356933032460070, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1039123701776944788}
   m_SourcePrefab: {fileID: 100100000, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
+--- !u!1 &1094184589239558892 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7841356933032460070, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
+  m_PrefabInstance: {fileID: 7204998008736751050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1039123701776944788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1094184589239558892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08b7f820ad8699946881244c5c9458cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaterEnemyMovementExperimental
+  patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  moveSpeed: 5
+  chaseSpeed: 600
+  verticalChaseSpeed: 5
+  patrolDestination: 0
+  playerTransform: {fileID: 0}
+  isChasing: 0
+  chaseDistance: 5
+  waitingAbility: 1
+  waitTimeMin: 1.04
+  waitTimeMax: 2.2
+  chosenTime: 0
+  evasionDistance: 20
+  EvasionTimer: 0
+  EvasionTime: 5
+  EvasionAbility: 1
+  evading: 0
+  watered: 0
+  groundCheck: {fileID: 6249375466632637573}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
+  body: {fileID: 6290480748435087475}
+  wallCheck: {fileID: 3289735280501205639}
+  waterMask:
+    serializedVersion: 2
+    m_Bits: 16
+  waterCheck: {fileID: 6047109458254669081}
+  patrolMode2: 0
+  canBreatheAir: 1
+  canDryUp: 0
+  airBreathTime: 40
+  airBreathTimer: 0
+  dryUpTime: 5
+  dryUpTimer: 0
+  driedAccelPenaltySetting: 50
+  driedAccelPenalty: 0
+  alive: 1
+  speedCapLimit: 8
+  speedCapHit: 0
+  debugDISTANCE: 0
 --- !u!61 &3289735280501205639 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 5645885887410517837, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
+  m_PrefabInstance: {fileID: 7204998008736751050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &6249375466632637573 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 3839167377925960015, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
+  m_PrefabInstance: {fileID: 7204998008736751050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &6290480748435087475 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3796830711559667129, guid: e9ec6b9a6bc257546ab4b49d7d082644, type: 3}
   m_PrefabInstance: {fileID: 7204998008736751050}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &9051281053990847563 stripped
