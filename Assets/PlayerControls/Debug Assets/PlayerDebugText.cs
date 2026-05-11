@@ -17,8 +17,14 @@ public class PlayerDebugText : MonoBehaviour
 
     void Update()
     {
-        float direction = Mathf.Sign(PlayerMovement.xInput);
-        transform.localScale = new Vector3(direction, 1, 1);
+        if (PlayerMovement.body.transform.localScale == new Vector3(-1, 1, 1))
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
     }
 
     // Update is called once per frame

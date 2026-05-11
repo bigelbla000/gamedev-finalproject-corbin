@@ -67,7 +67,7 @@ void FixedUpdate() {
             }
             if((transform.position.x - 0.2) < playerTransform.position.x && !speedCapHit)
             {
-                transform.localScale = new Vector3(-1, 1, 1);
+                //transform.localScale = new Vector3(-1, 1, 1);
                 debugDirection = true;
                 body.AddForce(new Vector2((Time.deltaTime) * chaseSpeed, 0));
             }
@@ -194,12 +194,12 @@ void PatrolDirection() { //Cosmetic related. Flips the model around when facing 
     if(transform.position.x > patrolPoints[patrolDestination].position.x)
     {
         transform.localScale = new Vector3(1, 1, 1);
-        debugDirection = false;
+        //debugDirection = false;
     }
     if(transform.position.x < patrolPoints[patrolDestination].position.x)
     {
         transform.localScale = new Vector3(-1, 1, 1);
-        debugDirection = true;
+        //debugDirection = true;
     }
 }
 

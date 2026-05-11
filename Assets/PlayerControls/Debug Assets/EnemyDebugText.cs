@@ -17,7 +17,7 @@ public class EnemyDebugText : MonoBehaviour
 
     void Update()
     {
-        if (EnemyMovementAdvanced.debugDirection)
+        if (EnemyMovementAdvanced.body.transform.localScale == new Vector3(-1, 1, 1))
         {
             transform.localScale = new Vector3(-1, 1, 1);
         }

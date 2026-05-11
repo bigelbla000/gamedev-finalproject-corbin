@@ -8,7 +8,7 @@ public class WaterEnemyMovement : MonoBehaviour
     public float moveSpeed;
     public float chaseSpeed; //This exists because of the movespeed required to be capable of chasing the people, being WAY too fast for patroling!
     public float verticalChaseSpeed; //only used during isChasing.
-    public int patrolDestination;
+    private int patrolDestination;
     public Transform playerTransform;
     public bool isChasing;
     public float chaseDistance;
@@ -18,14 +18,14 @@ public class WaterEnemyMovement : MonoBehaviour
     public float waitTimeMin; //Since waittime is randomized, these determine the minimun and maxinum possible amount of seconds.
     [Range(0f, 8f)]
     public float waitTimeMax; //same purpose as waitTimeMin, except for maxinum value instead.
-    public float chosenTime; //public for sake of debugging
+    private float chosenTime; //public for sake of debugging
     [Range(10f, 50f)]
     public float evasionDistance; //Distance before the enemy goes into Searching mode if EvasionAbility is enabled.
     public float EvasionTimer; //Starts at evasionTime's value, then counts down when outside of its Chase distance (if EvasionAbility is enabled). If it gets to 0, chase ends.
     [Range(1f, 30f)]
     public float EvasionTime;
     public bool EvasionAbility; //Determines if 'isChasing' is permenantly enabled or not when isChasing gets triggered, setting to true will enable the ability to evade from enemy.
-    public bool evading;
+    private bool evading;
     private bool grounded; //public for the sake of debugging.
     private bool walled; //public for the sake of debugging.
     public bool watered; //public for the sake of debugging.
@@ -50,8 +50,9 @@ public class WaterEnemyMovement : MonoBehaviour
     public bool alive;
     [Range(0.1f, 40f)]
     public float speedCapLimit;
-    public bool speedCapHit;
+    private bool speedCapHit;
     public float debugDISTANCE; //disable before compiling game
+    public int debugDirection;
     
     void Start() {
         alive = true;
@@ -80,12 +81,15 @@ void FixedUpdate() {
             if((transform.position.x + 0.2) > playerTransform.position.x && !speedCapHit)
             {
                 transform.localScale = new Vector3(1, 1, 1);
-                body.AddForce(new Vector2((-1 * Time.deltaTime) * chaseSpeed, 0));
+                body.AddForce(new Vector2((-1 * Time.deltaTime) * (chaseSpeed - driedAccelPenalty), 0));
+                debugDirection = 1;
             }
             if((transform.position.x - 0.2) < playerTransform.position.x && !speedCapHit)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
-                body.AddForce(new Vector2((Time.deltaTime) * chaseSpeed - driedAccelPenalty, 0));
+                body.AddForce(new Vector2((1 * Time.deltaTime) * (chaseSpeed - driedAccelPenalty), 0));
+                debugDirection = 2;
+                Debug.Log(Time.deltaTime);
             }
             // if (transform.position.y > playerTransform.position.y)
             // {
@@ -160,7 +164,8 @@ void FixedUpdate() {
     }
     WaterGravity();
     SpeedCapCheck();
-    debugDISTANCE = Vector2.Distance(transform.position, playerTransform.position); //disable before compiling game
+    //DEBUG SEGMENT -- COMMENT OUT BEFORE COMPILING
+    debugDISTANCE = (Vector2.Distance(transform.position, playerTransform.position) - chaseDistance);
 
 
     }
@@ -303,7 +308,7 @@ void DryUp() {
     }
 }
 
-void WaterGravity()
+    void WaterGravity()
     {
         if (watered)
         {
@@ -327,4 +332,29 @@ void WaterGravity()
             speedCapHit = false;
         }
     }
+
+    //DEBUG SEGMENT -- DISABLE IF EnemyWaterDebugText IS DISABLED.
+    public float GetchosenTime() {
+    return chosenTime;
+}
+public float GetPatrolDestination()
+    {
+        return patrolDestination;
+    }
+public bool GetWaitingState()
+    {
+        return waitingState;
+    }
+public bool GetEvading()
+    {
+        return evading;
+    }
+public bool GetspeedCapHit()
+    {
+        return speedCapHit;
+    }
+
+
+
+    
 } 
