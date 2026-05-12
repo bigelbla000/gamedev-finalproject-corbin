@@ -8,10 +8,12 @@ public class EnemyDamage : MonoBehaviour
     public PlayerHealth playerHealth;
     public PlayerMovement playerMovement;
    
-    public int health = 100;
-    public int maxHealth = 100;
+    public int health;
+    public int maxHealth;
     public GameObject deathEffect;
-
+void Start() {
+    health = maxHealth;
+}
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.transform.tag == "Player")
@@ -24,6 +26,7 @@ public class EnemyDamage : MonoBehaviour
 
     public void TakeDamage (int damage)
     {
+        Debug.Log("Sanity Check");
         health -= damage;
 
         if (health <= 0)

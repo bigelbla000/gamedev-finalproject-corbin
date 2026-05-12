@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         GetInput();
         MoveWithInput();
+        Animation();
     }
 
 
@@ -46,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         xInput = Input.GetAxis("Horizontal");
         yInput = Input.GetAxis("Vertical");
         //Make sure to change the settings. Select "Edit" > "Project Settings", select "Player", scroll down to "Other Settings", and find "Configuration", Locate "Active Input Handling" then make "Input System Package(new)" to "Both", and click "Apply"
+    }
+
+    void Animation() {
         if (xInput != 0){
             animator.SetBool("isRunning", true);
         }

@@ -1124,7 +1124,6 @@ GameObject:
   - component: {fileID: 1029338233}
   - component: {fileID: 1029338232}
   - component: {fileID: 1029338231}
-  - component: {fileID: 1029338230}
   - component: {fileID: 1029338229}
   m_Layer: 0
   m_Name: WaterFish
@@ -1185,24 +1184,6 @@ MonoBehaviour:
   speedCapLimit: 5
   debugDISTANCE: 0
   debugDirection: 0
---- !u!114 &1029338230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029338228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8938746900613244db6b8c89dd74cb32, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
-  damage: 5
-  playerHealth: {fileID: 1207938549}
-  playerMovement: {fileID: 1207938547}
-  health: 100
-  maxHealth: 100
-  deathEffect: {fileID: 0}
 --- !u!50 &1029338231
 Rigidbody2D:
   serializedVersion: 5
@@ -1242,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8938746900613244db6b8c89dd74cb32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDamage
-  damage: 0
+  damage: 2
   playerHealth: {fileID: 1207938549}
   playerMovement: {fileID: 1207938547}
   health: 100
@@ -2296,6 +2277,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1853503681 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6774713754067691951, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+  m_PrefabInstance: {fileID: 3105470695185175731}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b978129b43e7b4b9f8b13de1d30c89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Weapon
 --- !u!1 &1856621535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2496,6 +2488,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 823388558082769199, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056498177292704277, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1627277688572355480, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.1
@@ -2544,10 +2544,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6774713754067691951, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+      propertyPath: bulletSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6774713754067691951, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+      propertyPath: cooldownTime
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7934906584295147672, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 9022826807189766223, guid: 69dd271fd45aff84990037d1e87ee31f, type: 3}
+      propertyPath: Weapon
+      value: 
+      objectReference: {fileID: 1853503681}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2564,10 +2576,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2852769010141727807, guid: 25ed4f63305dd7347940fe9f90c150ab, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4814008270227417076, guid: 25ed4f63305dd7347940fe9f90c150ab, type: 3}
       propertyPath: m_Name
       value: Bullet
@@ -2611,10 +2619,6 @@ PrefabInstance:
     - target: {fileID: 5673190738278125021, guid: 25ed4f63305dd7347940fe9f90c150ab, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7548290654142733795, guid: 25ed4f63305dd7347940fe9f90c150ab, type: 3}
-      propertyPath: damage
-      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

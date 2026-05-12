@@ -89,7 +89,7 @@ void FixedUpdate() {
                 transform.localScale = new Vector3(-1, 1, 1);
                 body.AddForce(new Vector2((1 * Time.deltaTime) * (chaseSpeed - driedAccelPenalty), 0));
                 debugDirection = 2;
-                Debug.Log(Time.deltaTime);
+                //Debug.Log(Time.deltaTime);
             }
             // if (transform.position.y > playerTransform.position.y)
             // {
