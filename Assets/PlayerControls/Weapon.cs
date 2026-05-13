@@ -12,13 +12,9 @@ public class Weapon : MonoBehaviour
    private bool cooldownActive;
    private float cooldownTimer;
 
-    // Update is called once per frame
+    
     void FixedUpdate()
     {
-        if (Input.GetButtonDown("Fire1") && !cooldownActive)
-        {
-            Shoot();
-        }
         if(cooldownActive && (cooldownTimer > 0f)) {
             cooldownTimer -= Time.deltaTime;
         }
@@ -28,6 +24,16 @@ public class Weapon : MonoBehaviour
         }
         
     }
+    // Update is called once per frame
+    void Update() {
+        if (Input.GetButtonDown("Fire1") && !cooldownActive)
+        {
+            Shoot();
+        }
+    }
+
+
+
     void Start() {
         cooldownTimer = cooldownTime;
     }
